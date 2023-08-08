@@ -4,7 +4,7 @@
     function argsToMessage(...args) {
         return args.map((arg) => JSON.stringify(arg)).join(" ");
     }
-
+    core.initializeAsyncOps()
     globalThis.console = {
         log: (...args) => {
             core.print(`[out]: ${argsToMessage(...args)}\n`, false);
@@ -13,7 +13,7 @@
             core.print(`[err]: ${argsToMessage(...args)}\n`, true);
         },
     };
-    core.opAsync()
+
     globalThis.runjs = {
         readFile: (path) => {
             return core.ops.op_read_file(path);
